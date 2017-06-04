@@ -68,6 +68,7 @@ public class MessageReader implements  Runnable{
             bucket = message.headers().getString(MessageHeader.QUEUE);
         else
             bucket = message.headers().getString(MessageHeader.TOPIC);
+        /*
         synchronized (consumerList) {
             for (DefaultPullConsumer consumer: consumerList) {
                 if (consumer.bucketList.contains(bucket)) {
@@ -76,6 +77,17 @@ public class MessageReader implements  Runnable{
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                }
+            }
+        }
+        */
+
+        for (DefaultPullConsumer consumer: consumerList) {
+            if (consumer.bucketList.contains(bucket)) {
+                try {
+                    consumer.mq.put(message);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }

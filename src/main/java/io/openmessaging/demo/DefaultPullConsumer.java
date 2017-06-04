@@ -56,7 +56,7 @@ public class DefaultPullConsumer implements PullConsumer{
         DefaultBytesMessage msg = (DefaultBytesMessage)message;
 
         if (new String(msg.getBody()).equals("")) {
-            System.out.println(Thread.currentThread().getName()+": "+msgCnt);
+            //System.out.println(Thread.currentThread().getName()+": "+msgCnt);
             return null;
         }
 
